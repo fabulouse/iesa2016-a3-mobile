@@ -27,6 +27,9 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        
+        document.addEventListener("online", this.checkConnection);
+        document.addEventListener("offline", this.checkConnection);
     },
     // deviceready Event Handler
     //
@@ -34,26 +37,23 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        checkConnection: fonction(){
+    
+    },
+
+    checkConnection: function(){
             var networkState = navigator.connection.type;
             var states ={};
             states[Connection.UNKNOWN] = 'Unknown connection';
             states[Connection.Ethernet] = 'Ethernet connection ';
-            states[Connection.WIFI] = 'Unknown connection';
-            states[Connection.CELL_2G] = 'Unknown connection';
-            states[Connection.CELL_3G] = 'Unknown connection';
-            states[Connection.CELL_4G] = 'Unknown connection';
-            states[Connection.CELL] = 'Unknown connection';
-            states[Connection.NONE] = 'Unknown connection';
+            states[Connection.WIFI] = 'WIFI connection';
+            states[Connection.CELL_2G] = '2G connection';
+            states[Connection.CELL_3G] = '3G connection';
+            states[Connection.CELL_4G] = '4G connection';
+            states[Connection.CELL] = 'CEll connection';
+            states[Connection.NONE] = 'NONE connection';
             alert('Connection type : '+ states[networkState]);
 
         },
-        document.addEventListener("Online"), this.checkConnection);
-        document.addEventListener("Offline"), this.checkConnection);
-
-        
-    
-    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
